@@ -24,9 +24,9 @@ module mult32x32_fsm (
 	always_comb begin
 		next_state = current_state;
 		busy = 1'b0;
-		a_sel = {1'b0, 1'b0};
+		a_sel = 2'd0;
 		b_sel = 1'b0;
-		shift_sel = {1'b0, 1'b0, 1'b0};
+		shift_sel = 3'd0;
 		upd_prod = 1'b0;
 		clr_prod = 1'b0;
 		case (current_state)
@@ -41,54 +41,54 @@ module mult32x32_fsm (
 			B: begin
 				next_state = C;
 				busy = 1'b1;
-				a_sel = {1'b0, 1'b1};
-				shift_sel = {1'b0, 1'b0, 1'b1};
+				a_sel = 2'd1;
+				shift_sel = 3'd1;
 				upd_prod = 1'b1;
 			end
 			C: begin
 				next_state = D;
 				busy = 1'b1;
-				a_sel = {1'b1, 1'b0};
-				shift_sel = {1'b0, 1'b1, 1'b0};
+				a_sel = 2'd2;
+				shift_sel = 3'd2;
 				upd_prod = 1'b1;
 			end
 			D: begin
 				next_state = E;
 				busy = 1'b1;
-				a_sel = {1'b1, 1'b1};
-				shift_sel = {1'b0, 1'b1, 1'b1};
+				a_sel = 2'd3;
+				shift_sel = 3'd3;
 				upd_prod = 1'b1;
 			end
 			E: begin
 				next_state = F;
 				busy = 1'b1;
-				a_sel = {1'b0, 1'b0};
+				a_sel = 2'd0;
 				b_sel = 1'b1;
-				shift_sel = {1'b0, 1'b1, 1'b0};
+				shift_sel = 3'd2;
 				upd_prod = 1'b1;
 			end
 			F: begin
 				next_state = G;
 				busy = 1'b1;
-				a_sel = {1'b0, 1'b1};
+				a_sel = 2'd1;
 				b_sel = 1'b1;
-				shift_sel = {1'b0, 1'b1, 1'b1};
+				shift_sel = 3'd3;
 				upd_prod = 1'b1;
 			end
 			G: begin
 				next_state = H;
 				busy = 1'b1;
-				a_sel = {1'b1, 1'b0};
+				a_sel = 2'd2;
 				b_sel = 1'b1;
-				shift_sel = {1'b1, 1'b0, 1'b0};
+				shift_sel = 3'd4;
 				upd_prod = 1'b1;
 			end
 			H: begin
 				next_state = I;
 				busy = 1'b1;
-				a_sel = {1'b1, 1'b1};
+				a_sel = 2'd3;
 				b_sel = 1'b1;
-				shift_sel = {1'b1, 1'b0, 1'b1};
+				shift_sel = 3'd5;
 				upd_prod = 1'b1;
 			end
 			I: begin

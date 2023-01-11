@@ -87,6 +87,7 @@ module mult32x32_fsm (
 				a_sel = 2'd3;
 				b_sel = 1'b1;
 				shift_sel = 3'd5;
+				busy = 1'b1;
 			end
 		endcase
 	end

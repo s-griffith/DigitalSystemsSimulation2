@@ -27,8 +27,8 @@ mult32x32 multUnit (
 			@(posedge clk);
 		end
 		reset = 1'b0;
-		a = 64'd207223066;
-		b = 64'd341312304;
+		a = 32'd207223066;
+		b = 32'd341312304;
 		@(posedge clk);
 		start = 1'b1;
 		@(posedge clk);

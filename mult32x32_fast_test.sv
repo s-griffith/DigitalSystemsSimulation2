@@ -9,9 +9,44 @@ module mult32x32_fast_test;
     logic busy;           // Multiplier busy indication
     logic [63:0] product; // Miltiplication product
 
-// Put your code here
-// ------------------
-
-// End of your code
+mult32x32_fast multUnit (
+	.clk(clk),
+	.reset(reset),
+	.a(a),
+	.b(b),
+	.busy(busy),
+	.product(product),
+	.start(start)
+);
+	initial begin
+		clk = 1'b0;
+		@(posedge clk);
+		reset = 1'b1;
+		start = 1'b0;
+		repeat (4) begin
+			@(posedge clk);
+		end
+		reset = 1'b0;
+		a = 32'd207223066;
+		b = 32'd341312304;
+		@(posedge clk);
+		start = 1'b1;
+		@(posedge clk);
+		start = 1'b0;
+		@(negedge busy);
+		@(posedge clk);
+		reset = 1'b0;
+		a = 32'b100100011010; // conversion from base decimal
+		b = 32'b0001100110000;
+		@(posedge clk);
+		start = 1'b1;
+		@(posedge clk);
+		start = 1'b0;
+		@(negedge busy);
+	end
+	always begin
+		#10
+		clk = ~clk;
+	end
 
 endmodule

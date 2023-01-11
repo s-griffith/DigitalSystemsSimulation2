@@ -21,13 +21,22 @@ main:   # Load data from memory
         ori		t0, t0, 0xff
         
 ####################
-# Start of your code
+        add t2, x0, x0 # index of b 
+        ori t5, x0, 0xff # shift variable 
+        addi t1, x0, 16 # size of numbers given
+Loop1:
+        sll t5, t5, t2 # shift the shift variable over
+        and a4, t5, t4 # isolates 8 bits from b
+        srl a4, a4, t2 # 8 bits from b
+        mul a4, a4, t3 # multiply 8 bits from b with the 16 from a
+        and a4, a4, t0 
+        add a3, x0, t2 # add the two indices together
+        sll a4, a4, a3 # shift the product by the sum of the indices
+        add t6, t6, a4 # add the product to the output
+        addi t2, t2, 8 # move the index on b by 8
+        blt t2, t1, Loop1 
 
-# Use the code below for 16x8 multiplication
-#   mul		<PROD>, <FACTOR1>, <FACTOR2>
-#   and		<PROD>, <PROD>, t0
 
-# End of your code
 ####################
 		
 finish: addi    a0, x0, 1
